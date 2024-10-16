@@ -1,8 +1,6 @@
-# Arduino project Semana Ciencia 2024
+# Semana Ciencia 2024 - Measuring Plant Water Stress with Arduino
 
 ![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)
-
-## TECH4Agro tailer 
 
 ## Description
 
