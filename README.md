@@ -51,3 +51,7 @@ CC-BY
 
 ## Project status
 In progress
+
+## Useful links
+- Capacitive Sensors performance: https://www.youtube.com/watch?v=IGP38bz-K48
+
