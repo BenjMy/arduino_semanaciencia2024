@@ -1,6 +1,7 @@
 # Semana Ciencia 2024 - 🌿 Measuring Plant Water Stress with Arduino 🌱
 
 ![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](YOUR_STREAMLIT_LINK)
 
 ## 🌟 Description
 For the **Semana Ciencia** event, the goal is to demonstrate plant water stress by comparing two plants—one well-watered 💧 and one stressed 🌵—using soil moisture sensors and a thermal camera. Children will learn how soil moisture affects plant health and how technology can help monitor this. 
