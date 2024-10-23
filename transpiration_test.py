@@ -36,7 +36,7 @@ def transpiration_test():
 
     # Button to toggle expected results visibility
     button_color = "#FF4B4B"  # Custom color for the button
-    if st.button("Descubrir/Ocultar Resultados Esperados"):
+    if st.button("Descubrir/Ocultar Resultados Esperados",key='b_transpiration'):
         st.session_state.show_results = not st.session_state.show_results
 
     # Show expected results if the state is True

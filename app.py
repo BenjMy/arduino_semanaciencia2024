@@ -25,18 +25,21 @@ def main():
 
     # Sidebar radio selection without a default option
     tab = st.sidebar.radio("Selecciona la Prueba", 
-                            ["Prueba de Infiltración", "Prueba de Transpiración"])
+                            ["Prueba de Infiltración", "Prueba de Transpiración"],
+                            index=None)
     # Only display content based on selected tab
-    if tab == "Prueba de Infiltración":
-        infiltration_test()      # Function to display infiltration test content
-    elif tab == "Prueba de Transpiración":
-        transpiration_test()     # Function to display transpiration test content
+    if tab:
+        if tab == "Prueba de Infiltración":
+            infiltration_test()      # Function to display infiltration test content
+        elif tab == "Prueba de Transpiración":
+            transpiration_test()     # Function to display transpiration test content
 
 
 # Call the main function to run the app
 if __name__ == "__main__":
     main()
-
+    descripcion_proyecto()
+    
 # Sidebar logo
 st.sidebar.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
 
