@@ -29,7 +29,7 @@ def infiltration_test():
         """)
 
         # Add ET thermal image with reduced size (e.g., 300 pixels wide)
-        st.image("irrigation.webp", caption="irrigation", width=300)
+        st.image("irrigation.png", caption="irrigation", width=300)
 
     # Initialize session state for showing results
     if 'show_results' not in st.session_state:

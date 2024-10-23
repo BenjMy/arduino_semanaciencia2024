@@ -28,7 +28,7 @@ def transpiration_test():
         """)
 
         # Add ET thermal image with reduced size (e.g., 300 pixels wide)
-        st.image("ET_thermal_leaves_test.webp", caption="Imagen térmica que muestra las diferencias de evapotranspiración en las hojas de las plantas.", width=300)
+        st.image("ET_thermal_leaves_test.png", caption="Imagen térmica que muestra las diferencias de evapotranspiración en las hojas de las plantas.", width=300)
 
     # Initialize session state for showing results
     if 'show_results' not in st.session_state:
