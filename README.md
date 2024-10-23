@@ -49,3 +49,16 @@ conda create -n semana_ciencia streamlit python=3.10
 conda activate semana_ciencia
 pip install streamlit pandas matplotlib
 pip install pyserial
+```
+
+👩‍🏫 Authors and Acknowledgment
+- Benjamin Mary
+- Hector Nieto
+
+📜 License: CC-BY
+
+🚧 Project Status: In progress
+
+🔗 Useful Links
+Capacitive Sensors Performance: https://www.youtube.com/watch?v=IGP38bz-K48
+
