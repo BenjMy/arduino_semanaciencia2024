@@ -1,75 +1,65 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+import serial
 import time
+import plotly.graph_objs as go
+from collections import deque
 
-def obtener_datos_sensor(sensor_number, num_readings=10):
-    # Generate time values (e.g., 10 time steps)
-    tiempo = pd.date_range(start="2024-10-01", periods=num_readings, freq="H")
-    # Generate random soil moisture values for the selected sensor
-    humedad_suelo = {
-        f'Humedad del Suelo {sensor_number}': np.random.randint(0, 100, num_readings)
-    }
-    return tiempo, humedad_suelo
+# Configure serial connection (adjust to your Arduino's port and baud rate)
+SERIAL_PORT = '/dev/ttyACM0'  # Adjust for your device
+BAUD_RATE = 9600
 
 def mostrar_monitoreo_en_tiempo_real():
-    st.header("Datos de Sensores en Tiempo Real")
-    
-    # Select sensor and plant number on the main page
-    num_sensors = 4  # Number of sensors
-    num_plants = 2   # Number of plants
-    sensor_number = st.selectbox("Selecciona el Número de Sensor", 
-                                  [f'Sensor {i + 1}' for i in range(num_sensors)])
-    plant_number = st.selectbox("Selecciona el Número de Planta", 
-                                 [f'Planta {i + 1}' for i in range(num_plants)])
-    
-    # Button to pause or resume the plot
-    pause_button = st.button("Pausar/Continuar")
 
-    # Number of readings to simulate
-    num_readings = 10  
-    max_readings = 50  # Max readings to display in the plot
-    humedad_suelo_data = {f'Humedad del Suelo {sensor_number[-1]}': []}
+    st.empty()  # Clear previous content
 
-    # Create a placeholder for the plot
-    placeholder = st.empty()
-    
-    # Live update loop
-    is_paused = False  # Track the pause state
-    while True:
-        if pause_button:
-            is_paused = not is_paused  # Toggle pause state
-            pause_button = st.button("Pausar/Continuar")  # Recreate button to get new state
+    # Function to read data from Arduino
+    def read_arduino_data(ser):
+        if ser.in_waiting > 0:
+            try:
+                # Read line from Arduino, decode to string, and remove newline
+                line = ser.readline().decode('utf-8').rstrip()
+                return float(line)  # Convert to float for plotting
+            except Exception as e:
+                st.error(f"Error reading data: {e}")
+        return None
 
-        if not is_paused:
-            tiempo, datos_sensor = obtener_datos_sensor(int(sensor_number[-1]), num_readings)
-            humedad_suelo_data[f'Humedad del Suelo {sensor_number[-1]}'].extend(datos_sensor[f'Humedad del Suelo {sensor_number[-1]}'])
+    # Open serial connection
+    try:
+        ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+        time.sleep(2)  # Wait for connection to be established
+    except Exception as e:
+        st.error(f"Could not open serial port: {e}")
+        ser = None
 
-            # Limit to the last `max_readings`
-            if len(humedad_suelo_data[f'Humedad del Suelo {sensor_number[-1]}']) > max_readings:
-                humedad_suelo_data[f'Humedad del Suelo {sensor_number[-1]}'] = humedad_suelo_data[f'Humedad del Suelo {sensor_number[-1]}'][-max_readings:]
+    # Real-time plotting setup
+    if ser:
+        # Deque to store time series data for plotting (max length of 100 points)
+        sensor_data = deque(maxlen=100)
+        time_data = deque(maxlen=100)
+        start_time = time.time()
 
-            # Create DataFrame for plotting
-            df = pd.DataFrame(humedad_suelo_data)
-            df.index = pd.date_range(start="2024-10-01", periods=len(df), freq="H")
+        # Plotting placeholder
+        plot_placeholder = st.empty()
 
-            # Plotting
-            plt.figure(figsize=(10, 5))
-            plt.plot(df.index, df[f'Humedad del Suelo {sensor_number[-1]}'], marker='o', label=f'Humedad del Suelo {sensor_number[-1]}')
-            
-            plt.ylabel("Valores de Humedad (%)")
-            plt.title(f"Evolución de la Humedad del Suelo en el Tiempo - {plant_number}")
-            plt.ylim(0, 100)  # Limiting y-axis between 0 and 100%
-            plt.legend()  # Show legend for the sensors
-            plt.grid()
+        while True:
+            data = read_arduino_data(ser)
+            if data is not None:
+                current_time = time.time() - start_time  # Time elapsed in seconds
+                sensor_data.append(data)
+                time_data.append(current_time)
 
-            # Display the plot in Streamlit
-            placeholder.pyplot(plt)
-        
-        # Pause for a moment before the next update
-        time.sleep(2)  # Update every 2 seconds
+                # Create the plot
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=list(time_data), y=list(sensor_data), mode='lines+markers', name='Sensor Value'))
+                fig.update_layout(
+                    title="Real-Time Sensor Data",
+                    xaxis_title="Time (seconds)",
+                    yaxis_title="Sensor Value",
+                    xaxis_range=[max(0, current_time - 30), current_time],  # 30-second sliding window
+                    yaxis_range=[min(sensor_data) - 5, max(sensor_data) + 5]
+                )
 
-# Call the function to run the app
-if __name__ == "__main__":
-    mostrar_monitoreo_en_tiempo_real()
+                # Display the plot
+                plot_placeholder.plotly_chart(fig, use_container_width=True)
+
+            time.sleep(1)  # Adjust delay to match your data frequency

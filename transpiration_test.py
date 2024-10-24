@@ -8,23 +8,24 @@ def transpiration_test():
 
     with tab1:
         st.write("### Objetivo")
-        st.write("Observar el efecto de la transpiración de las plantas en el contenido de humedad del suelo y la evapotranspiración (ET).")
+        st.write("""
+        En esta prueba, vamos a investigar cómo las plantas "respiran" a través de un proceso llamado transpiración. 
+        """)
 
     with tab2:
         st.write("### Materiales")
         st.write("""
-        - Dos plantas (una bien regada, una estresada)
-        - Sensores de humedad del suelo (TDR, capacitivo)
-        - Cámara térmica
+        Para nuestra emocionante aventura, necesitaremos:
+        - **Dos plantas**: una que ha recibido mucho agua (bien regada) y otra que no ha recibido suficiente (estresada).
+        - **Cámara térmica**: esta herramienta nos permitirá ver cómo están de calientes las hojas de las plantas y cuánto agua están perdiendo.
         """)
 
     with tab3:
         st.write("### Procedimiento")
         st.write("""
-        1. Colocar los sensores en ambas macetas con plantas bien regadas y estresadas.
-        2. Monitorear la diferencia en el contenido de humedad del suelo (SMC) a lo largo del tiempo utilizando Arduino.
-        3. Usar la cámara térmica para monitorear la temperatura de las hojas y las tasas de transpiración.
-        4. Comparar el efecto de la transpiración de las plantas en el SMC y ET entre las dos plantas.
+        ¡Listos para comenzar! Sigue estos pasos:
+        3. **Usa la cámara térmica** para ver la temperatura de las hojas. ¿Están calientes? Eso puede significar que están perdiendo agua.
+        4. **Compara los resultados**: Observa cómo la transpiración de las plantas afecta la temperatura de las hojas!
         """)
 
         # Add ET thermal image with reduced size (e.g., 300 pixels wide)
@@ -36,18 +37,16 @@ def transpiration_test():
 
     # Button to toggle expected results visibility
     button_color = "#FF4B4B"  # Custom color for the button
-    if st.button("Descubrir/Ocultar Resultados Esperados",key='b_transpiration'):
+    if st.button("Descubrir/Ocultar Resultados Esperados", key='b_transpiration'):
         st.session_state.show_results = not st.session_state.show_results
 
     # Show expected results if the state is True
     if st.session_state.show_results:
         st.write("""
         **Resultados Esperados**:
-        - Menor SMC y mayor ET en la planta bien regada.
-        - Temperaturas de hojas más altas en la planta estresada, indicando menos transpiración.
+        - Las hojas de la planta estresada estarán más calientes, lo que indica que está transpirando menos agua.
+        - Aprenderemos cómo las plantas utilizan el agua y cómo eso afecta su salud.
         """)
-
-
 
 # Call the function to display the test
 transpiration_test()
