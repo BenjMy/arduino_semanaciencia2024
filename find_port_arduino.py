@@ -9,13 +9,12 @@ def get_serial_port():
         return [port.device for port in ports]
 
     # Show available ports in local development
-    if st.session_state.get('is_local', False):  # Check if running locally
-        available_ports = list_serial_ports()
-        st.write("Available ports:", available_ports)
-        
-        # Allow user to select a port
-        selected_port = st.selectbox("Select the Arduino Port:", available_ports)
-    else:
-        selected_port = st.text_input("Enter the Arduino Port:", "/dev/ttyACM0")  # Default port
+    # if st.session_state.get('is_local', False):  # Check if running locally
+    available_ports = list_serial_ports()
+    # st.write("Available ports:", available_ports)
+    # Allow user to select a port
+    selected_port = st.selectbox("Select the Arduino Port:", available_ports)
+    # else:
+    #    selected_port = st.text_input("Enter the Arduino Port:", "/dev/ttyACM0")  # Default port
 
     return selected_port
