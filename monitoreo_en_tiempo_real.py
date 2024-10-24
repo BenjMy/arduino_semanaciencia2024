@@ -3,14 +3,15 @@ import serial
 import time
 import plotly.graph_objs as go
 from collections import deque
+from find_port_arduino import get_serial_port  # Import the function
 
-# Configure serial connection (adjust to your Arduino's port and baud rate)
-SERIAL_PORT = '/dev/ttyACM0'  # Adjust for your device
 BAUD_RATE = 9600
 
 def mostrar_monitoreo_en_tiempo_real():
-
     st.empty()  # Clear previous content
+
+    # Get the selected serial port
+    SERIAL_PORT = get_serial_port()
 
     # Function to read data from Arduino
     def read_arduino_data(ser):
@@ -63,3 +64,7 @@ def mostrar_monitoreo_en_tiempo_real():
                 plot_placeholder.plotly_chart(fig, use_container_width=True)
 
             time.sleep(1)  # Adjust delay to match your data frequency
+
+# Call the function to display the test
+if __name__ == "__main__":
+    mostrar_monitoreo_en_tiempo_real()
