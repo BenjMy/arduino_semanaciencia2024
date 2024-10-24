@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     # Sidebar logo
     st.sidebar.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
-    st.logo("Logo-Color - Tech4Agro_primary.eps")
+    st.logo("LogoTech4Agro_primary.png")
 
 
     # Sidebar navigation
