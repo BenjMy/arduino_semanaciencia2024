@@ -28,11 +28,14 @@ def mostrar_monitoreo_en_tiempo_real():
 
                 # Create the plot
                 fig = go.Figure()
-                fig.add_trace(go.Scatter(x=list(time_data), y=list(sensor_data), mode='lines+markers', name='Sensor Value'))
+                fig.add_trace(go.Scatter(x=list(time_data),
+                                         y=list(sensor_data),
+                                         mode='lines+markers',
+                                         name='Medida del Sensor'))
                 fig.update_layout(
-                    title="Real-Time Sensor Data",
-                    xaxis_title="Time (seconds)",
-                    yaxis_title="Sensor Value",
+                    title="Datos en tiempo real del sensor",
+                    xaxis_title="Tiempo (segundos)",
+                    yaxis_title="Valor del Sensor",
                     xaxis_range=[max(0, current_time - 30), current_time],  # 30-second sliding window
                     yaxis_range=[min(sensor_data) - 5, max(sensor_data) + 5]
                 )
