@@ -1,7 +1,7 @@
 import streamlit as st
 
 def infiltration_test():
-    st.header("Prueba de Infiltración")
+    st.header("Experimento de Infiltración", anchor="prueba-de-infiltracion")
 
     # Create tabs for the different sections
     tab1, tab2, tab3 = st.tabs(["Objetivo", "Materiales", "Procedimiento"])
@@ -20,7 +20,7 @@ def infiltration_test():
         Para nuestra prueba, necesitaremos:
         - **Dos plantas**: una bien regada (sana) y otra que no ha recibido suficiente agua (estresada).
         - **Sensores de humedad del suelo**: estos nos ayudarán a medir cuánta agua hay en la tierra.
-        - **Arduino**: una pequeña computadora que nos ayudará a registrar los datos que recogemos.
+        - **Arduino**: una pequeña computadora de bajo coste que nos ayudará a registrar los datos que recogemos.
         """)
 
     with tab3:
@@ -43,14 +43,14 @@ def infiltration_test():
 
     # Button to toggle expected results visibility
     button_color = "#FF4B4B"  # Custom color for the button
-    if st.button("Descubrir/Ocultar Resultados Esperados"):
+    if st.button("Mostrar/Ocultar Resultados Esperados"):
         st.session_state.show_results = not st.session_state.show_results
 
     # Show expected results if the state is True
     if st.session_state.show_results:
         st.write("""
         **Resultados Esperados**:
-        - Aumento rápido en la humedad del suelo durante el riego.
+        - Aumento rápido de la humedad del suelo durante el riego.
         - Disminución gradual a medida que el agua se infiltra en capas más profundas.
         - Las plantas bien regadas se verán más saludables y felices.
         """)

@@ -13,16 +13,16 @@ def descripcion_proyecto():
 	st.header("¡Tú Serás el Científico! 👩‍🔬👨‍🔬")
 	st.write("""
 	¡Tú liderarás el experimento! Aquí hay algunas preguntas que podrás responder:
-	1. ¿Qué tan húmedo está el suelo de las plantas? 🌾
+	1. ¿Cómo de húmedo está el suelo de las plantas? 🌾
 	2. ¿Cómo afecta el agua en el suelo a la temperatura de la planta? 🔥
-	3. ¿Qué diferencias ves entre las plantas que tienen mucho y poco agua? 🤔
+	3. ¿Qué diferencias ves entre las plantas que tienen mucha y poca agua? 🤔
 	""")
 
 	# Agregar enlaces a las pruebas
-	st.header("Selecciona una Prueba 🔍")
+	st.header("Selecciona un Experimento 🔍")
 	st.write("Haz clic en uno de los siguientes enlaces para comenzar:")
 	st.markdown("""
-	- [Prueba de Infiltración 🌊](#prueba-de-infiltracion)
-	- [Prueba de Transpiración 🌬️](#prueba-de-transpiracion)
+	- [Experimento de Infiltración 🌊](#prueba-de-infiltracion)
+	- [Experimento de Transpiración 🌬️](#prueba-de-transpiracion)
 	""") 
 

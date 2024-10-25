@@ -26,16 +26,17 @@ def main():
         mostrar_monitoreo_en_tiempo_real()  # Call the real-time monitoring function
 
     # Sidebar radio selection without a default option
-    tab = st.sidebar.radio("Selecciona la Prueba", 
-                            ["Prueba de Infiltración", "Prueba de Transpiración"],
+    tab = st.sidebar.radio("Selecciona el Experimento",
+                            ["Experimento de Infiltración",
+                             "Experimento de Transpiración"],
                             index=None)
 
     # Only display content based on selected tab
     if tab:
-        if tab == "Prueba de Infiltración":
+        if tab == "Experimento de Infiltración":
             st.empty()  # Clear previous content
             infiltration_test()  # Function to display infiltration test content
-        elif tab == "Prueba de Transpiración":
+        elif tab == "Experimento de Transpiración":
             st.empty()  # Clear previous content
             transpiration_test()  # Function to display transpiration test content
 
@@ -45,7 +46,12 @@ if __name__ == "__main__":
     main()
 
     # Sidebar logo
-    st.sidebar.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
+    col1, col2 = st.sidebar.columns([0.45, 0.55], vertical_alignment="center")
+    with col1:
+        st.image("1-CSIC-Logotipo--SVG-Vectorial--COLOR--CSIC.svg",
+                 use_column_width=True)
+    with col2:
+        st.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
     st.logo("LogoTech4Agro_primary.png")
 
 
@@ -53,10 +59,19 @@ if __name__ == "__main__":
     st.sidebar.subheader("Grupo TECH4Agro del ICA-CSIC")
     st.sidebar.write("**Fecha**: 7 Noviembre 2024 📅")
     st.sidebar.write("**Ubicación**: Madrid, España 🇪🇸")
-    st.sidebar.write("**Colaboradores**: Benjamin Mary, Irene Borra Serrano, Vicente Burchard Levine, Gustavo Mesías Ruiz, Héctor Nieto")
+    st.sidebar.write("**Colaboradores**: Benjamin Mary, "
+                     "Irene Borra Serrano, "
+                     "Vicente Burchard Levine, "
+                     "Gustavo Mesías Ruiz, "
+                     "Héctor Nieto")
 
     # Add reproducibility section
     st.sidebar.subheader("Proyecto Reproducible")
-    st.sidebar.write("Este proyecto es reproducible. Los datos y códigos están disponibles de forma gratuita en GitLab.")
+    st.sidebar.write("Este proyecto es reproducible. "
+                     "Los datos y códigos están disponibles de forma gratuita "
+                     "en GitLab.")
     if st.sidebar.button("Visitar GitLab"):
-        st.markdown('<a href="https://git.csic.es/tech4agro/arduino_semanaciencia2024" target="_blank">GitLab - Proyecto Reproducible</a>', unsafe_allow_html=True)
+        st.markdown(
+            '<a href="https://git.csic.es/tech4agro/arduino_semanaciencia2024" '
+            'target="_blank">GitLab - Proyecto Reproducible</a>',
+            unsafe_allow_html=True)
