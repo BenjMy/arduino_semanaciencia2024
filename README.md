@@ -1,7 +1,7 @@
 # 🌱 Arduino Monitoring App for Semana de la Ciencia
 
 [![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)](https://git.csic.es/tech4agro/arduino_semanaciencia2024)
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://tech4agro-csic-semanaciencia2024.streamlit.app/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://tech4agro-semanaciencia2024.streamlit.app/)
 
 
 This project is a **real-time monitoring application** for Arduino-based soil moisture sensors, built using Streamlit. It aims to help students visualize and understand how plants respond to changes in water availability, focusing on two experiments: **Infiltration** and **Transpiration**.
