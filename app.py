@@ -46,7 +46,12 @@ if __name__ == "__main__":
     main()
 
     # Sidebar logo
-    st.sidebar.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
+    col1, col2 = st.sidebar.columns([0.45, 0.55], vertical_alignment="center")
+    with col1:
+        st.image("1-CSIC-Logotipo--SVG-Vectorial--COLOR--CSIC.svg",
+                 use_column_width=True)
+    with col2:
+        st.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
     st.logo("LogoTech4Agro_primary.png")
 
 
