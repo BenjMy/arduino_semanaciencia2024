@@ -1,0 +1,12 @@
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - streamlit==1.39.0
+  - pyserial==3.5
+  - matplotlib
+  - pandas
+  - numpy
+  - pandas
+  - plotly
+  - flask
