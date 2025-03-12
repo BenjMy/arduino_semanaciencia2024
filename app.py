@@ -6,8 +6,10 @@ from transpiration_test import transpiration_test
 from monitoreo_en_tiempo_real import mostrar_monitoreo_en_tiempo_real
 from proyecto import descripcion_proyecto
 
-# Add header image
-st.sidebar.image("semana_ciencia_header.png", use_column_width=True)
+
+st.title("Midiendo el Estrés Hídrico de las Plantas 🌿🔍")
+st.subheader("Semana de la Ciencia 2024")
+
 
 # Button to return to project description
 if st.sidebar.button("Volver a la Descripción del Proyecto"):
@@ -26,24 +28,36 @@ def main():
         mostrar_monitoreo_en_tiempo_real()  # Call the real-time monitoring function
 
     # Sidebar radio selection without a default option
-    tab = st.sidebar.radio("Selecciona el Experimento",
-                            ["Experimento de Infiltración",
-                             "Experimento de Transpiración"],
-                            index=None)
-
+    st.session_state.prueba = st.sidebar.radio("Selecciona la Prueba",
+                                                ["Prueba de Infiltración",
+                                                "Prueba de Transpiración"],
+                                                #index=None,
+                                                on_change=show_prueba
+                                                )
+def show_prueba():
+    st.write(st.session_state.prueba)
+    st.empty()  # Clear previous content
     # Only display content based on selected tab
-    if tab:
-        if tab == "Experimento de Infiltración":
-            st.empty()  # Clear previous content
-            infiltration_test()  # Function to display infiltration test content
-        elif tab == "Experimento de Transpiración":
-            st.empty()  # Clear previous content
-            transpiration_test()  # Function to display transpiration test content
+    if st.session_state.prueba == "Prueba de Infiltración":
+        infiltration_test()      # Function to display infiltration test content
+    elif st.session_state.prueba == "Prueba de Transpiración":
+        transpiration_test()     # Function to display transpiration test content
+
+
 
 # Call the main function to run the app
-if __name__ == "__main__":
-    st.empty()  # Clear previous content
-    main()
+#if __name__ == "__main__":
+    # Title and event details
+
+main()
+    #descripcion_proyecto()
+
+# Add header image
+st.sidebar.image("semana_ciencia_header.png", use_column_width=True)
+
+
+# Sidebar logo
+st.sidebar.image("Logo_CSIC-ICA_100cm_blanco-stroke-and-fill.svg", width=100)
 
     # Sidebar logo
     col1, col2 = st.sidebar.columns([0.45, 0.55], vertical_alignment="center")
